@@ -11,8 +11,13 @@ class House
   end
 
   def phrase(number)
-    data.last(number).join('_')
+    parts(number).join(' ')
   end
+
+  def parts(number)
+    data.last(number)
+  end
+
 
   def data
     [
