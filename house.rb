@@ -1,7 +1,16 @@
 # frozen_string_literal: true
 
+require_relative './default_order'
+require_relative './random_order'
+
 # Main class to recite The House that Jack Built nursery rhyme
 class House
+  attr_reader :data
+
+  def initialize(orderer: DefaultOrder.new)
+    @data = orderer.order(DATA)
+  end
+
   DATA = [
     'the horse and the hound and the horn that belonged to',
     'the farmer sowing his corn that kept',
