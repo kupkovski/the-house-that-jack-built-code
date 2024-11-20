@@ -3,11 +3,15 @@
 require_relative './default_order'
 require_relative './random_order'
 
+require_relative './default_formatter'
+require_relative './echo_formatter'
+
 # Main class to recite The House that Jack Built nursery rhyme
 class House
-  attr_reader :data
+  attr_reader :formatter, :data
 
-  def initialize(orderer: DefaultOrder.new)
+  def initialize(orderer: DefaultOrder.new, formatter: DefaultFormatter.new)
+    @formatter = formatter
     @data = orderer.order(DATA)
   end
 
@@ -39,7 +43,7 @@ class House
   end
 
   def parts(number)
-    data.last(number)
+    formatter.format(data.last(number))
   end
 
   def data
